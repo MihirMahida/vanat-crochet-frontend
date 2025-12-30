@@ -1,0 +1,252 @@
+/* Import a font that matches the "jist" of the image (Clean, rounded, slightly casual) */
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&display=swap'); /* For the main Logo title vibe */
+
+:root {
+  --bg-color: #f6f3ee; /* Cream/Canvas color from the logo image */
+  --text-color: #333;
+  --accent-color: #8da399; /* Muted teal from the "VANAT" crochet letters */
+  --border-color: #000;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Quicksand', sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
+
+.app-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-bottom: 50px;
+}
+
+/* HEADER */
+/* Desktop styles (min-width: 601px) */
+@media (min-width: 601px) {
+  .header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 24px 0 16px 0;
+    position: relative;
+    width: 100%;
+  }
+
+  .logo-container {
+    width: 56px;
+    height: 56px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-right: 24px;
+    margin-left: 8px;
+  }
+
+  .logo-img {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 1px solid #ccc;
+    background: white;
+  }
+
+  .header-image-container {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: auto;
+  }
+
+  .header-img {
+    max-height: 64px;
+    max-width: 400px;
+    object-fit: contain;
+  }
+}
+
+/* Mobile styles (max-width: 600px) */
+@media (max-width: 600px) {
+  .header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 0;
+    position: relative;
+    width: 100%;
+  }
+
+  .logo-container {
+    display: none;
+  }
+
+  .header-image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    position: static;
+    left: auto;
+    right: auto;
+    margin: 0;
+    text-align: center;
+    z-index: 1;
+    transform: none;
+  }
+
+  .header-img {
+    max-width: 90vw;
+    max-height: 48px;
+    object-fit: contain;
+  }
+}
+
+/* ACTION BAR (Sort/Filter) */
+.action-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 24px 0;
+  width: 100%;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.action-btn {
+  flex: 1 1 0;
+  background-color: var(--bg-color); /* Use the same background as the webpage */
+  color: #333;
+  border: none;
+  padding: 12px 0;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s;
+  border-radius: 0;
+  outline: none;
+  width: 100%; /* Ensure full width inside flex */
+  box-sizing: border-box;
+}
+
+.action-btn:hover {
+  background-color: #e0e0e0;
+}
+
+/* Divider styling */
+.divider {
+  width: 1px;
+  height: 32px;
+  background: #ccc;
+  margin: 0 8px;
+  align-self: stretch;
+}
+
+/* Optional: Remove button border radius if present */
+.action-btn.left {
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+}
+
+.action-btn.right {
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
+.filter-wrapper {
+    flex: 1;
+    position: relative;
+}
+
+.dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: white;
+    border: 2px solid black;
+    border-top: none;
+    z-index: 10;
+}
+
+.dropdown-item {
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+    cursor: pointer;
+}
+.dropdown-item:hover { background: #f0f0f0; }
+
+/* GRID LAYOUT */
+.product-grid {
+  display: grid;
+  /* Default Mobile: 2 columns exactly like the image */
+  grid-template-columns: 1fr 1fr; 
+  gap: 15px;
+  padding: 0 15px;
+}
+
+/* Desktop: 4 columns */
+@media (min-width: 768px) {
+  .product-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+    padding: 0 30px;
+  }
+}
+
+/* PRODUCT CARD */
+.product-card {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.image-container {
+  width: 100%;
+  aspect-ratio: 1 / 1; /* Keeps images square */
+  background-color: #e0e0e0;
+  border-radius: 8px; /* Slight rounding as seen in image */
+  overflow: hidden;
+}
+
+.product-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.product-info {
+  text-align: left;
+}
+
+.product-name {
+  margin: 5px 0;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #444;
+}
+
+.product-price {
+  margin: 0;
+  font-size: 0.85rem;
+  color: #777;
+}
+
+.loading-text, .empty-text {
+    text-align: center;
+    grid-column: span 2;
+    padding: 40px;
+    color: #888;
+}
+
+@media (min-width: 768px) {
+    .loading-text, .empty-text {
+        grid-column: span 4;
+    }
+}
