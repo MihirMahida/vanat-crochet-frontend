@@ -7,44 +7,18 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-# Dependency directories
 node_modules
-/jspm_packages
+dist
+dist-ssr
+*.local
 
-# Distribution directories
-/dist
-/build
-/out
-/es
-/coverage
-.next # For Next.js projects
-
-# Optional npm cache directory
-.npm
-
-# Optional eslint cache
-.eslintcache
-
-# Optional REPL history
-.node_repl_history
-
-# Output of 'npm pack'
-*.tgz
-
-# Yarn Integrity file
-.yarn-integrity
-
-# Environments
-.env
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
-
-# System Files
-.DS_Store
-Thumbs.db
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
 .idea
-.vscode
-*.sublime-project
-*.sublime-workspace
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?

@@ -5,7 +5,7 @@ import logo from './logo.png';
 import headerImage from './headerImage.png';
 
 // Configure your backend URL
-const API_BASE_URL = 'http://localhost:8080/api/products';
+const API_BASE_URL = 'https://vanat-crochet.onrender.com';
 
 function App() {
   const [products, setProducts] = useState([]);
