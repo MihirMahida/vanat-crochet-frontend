@@ -5,7 +5,7 @@ import logo from './logo.png';
 import headerImage from './headerImage.png';
 
 // Configure your backend URL
-const API_BASE_URL = 'https://vanat-crochet.onrender.com/api/products';
+const API_BASE_URL = 'https://vanat-crochet.onrender.com';
 
 function App() {
   const [products, setProducts] = useState([]);
@@ -24,30 +24,20 @@ function App() {
   const fetchProducts = async () => {
     setLoading(true);
     try {
-      let url = API_BASE_URL;
+      let url;
       
       // LOGIC: Utilizing your backend controller specific endpoints
       if (filterCategory !== 'All') {
         // Use the sorted category endpoint if a specific category is chosen
         // Endpoint: /category/{category}/sort?sort={asc/desc}
-        url = `${API_BASE_URL}/category/${filterCategory}/sort?sort=${sortOrder}`;
+        url = `${API_BASE_URL}/api/products/category/${filterCategory}/sort?sort=${sortOrder}`;
       } else {
-        // If "All", fetch all and we will sort client-side since 
-        // backend doesn't have a global sort endpoint in the provided controller.
-        url = API_BASE_URL;
+        // If "All", use the global sort endpoint
+        url = `${API_BASE_URL}/api/products/sort?sort=${sortOrder}`;
       }
 
       const response = await axios.get(url);
-      let data = response.data;
-
-      // Client-side sort if we are fetching "All" (Backend only supports sort by category)
-      if (filterCategory === 'All') {
-        data.sort((a, b) => {
-          return sortOrder === 'asc' ? a.price - b.price : b.price - a.price;
-        });
-      }
-
-      setProducts(data);
+      setProducts(response.data);
     } catch (error) {
       console.error("Error fetching data:", error);
     } finally {
@@ -110,11 +100,10 @@ function App() {
             products.map((product) => (
             <div key={product.id} className="product-card">
                 <div className="image-container">
-                {product.imageData ? (
-                    <img 
-                        // Converting Spring Boot byte[] to Base64 source
-                        src={`data:${product.imageType};base64,${product.imageData}`} 
-                        alt={product.name} 
+                {product.imageUrl ? (
+                    <img
+                        src={`${API_BASE_URL}${product.imageUrl}`}
+                        alt={product.name}
                         className="product-image"
                     />
                 ) : (
