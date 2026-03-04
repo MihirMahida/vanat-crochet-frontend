@@ -15,7 +15,7 @@ function App() {
   const [showFilterOptions, setShowFilterOptions] = useState(false);
 
   // Hardcoded categories based on your image context
-  const categories = ['All', 'Flower', 'Cartoon', 'EvilEye'];
+  const categories = ['All', 'Earrings', 'Bag', 'Bookmark', 'Hairpin', 'Keychain', 'Other'];
 
   useEffect(() => {
     fetchProducts();
