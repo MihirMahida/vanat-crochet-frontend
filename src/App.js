@@ -1,13 +1,26 @@
 import React, { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import axios from 'axios';
 import './App.css';
 import logo from './logo.png';
 import headerImage from './headerImage.png';
+import ProductDetail from './ProductDetail';
 
 // Configure your backend URL
 const API_BASE_URL = 'https://vanat-crochet.onrender.com';
 
 function App() {
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<ProductGridPage />} />
+        <Route path="/product/:id" element={<ProductDetail />} />
+      </Routes>
+    </Router>
+  );
+}
+
+function ProductGridPage() {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [filterCategory, setFilterCategory] = useState('All');
@@ -98,7 +111,7 @@ function App() {
             <p className="loading-text">Loading handmade items...</p>
         ) : products.length > 0 ? (
             products.map((product) => (
-            <div key={product.id} className="product-card">
+            <Link to={`/product/${product.id}`} key={product.id} className="product-card">
                 <div className="image-container">
                 {product.imageUrl ? (
                     <img
@@ -114,7 +127,7 @@ function App() {
                 <h3 className="product-name">{product.name}</h3>
                 <p className="product-price">₹ {product.price.toFixed(2)}</p>
                 </div>
-            </div>
+            </Link>
             ))
         ) : (
             <p className="empty-text">No products found in this category.</p>
